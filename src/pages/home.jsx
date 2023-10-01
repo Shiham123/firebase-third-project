@@ -1,4 +1,9 @@
+import { useContext } from 'react';
+import { AppContext } from '../context/useContext';
+
 const Home = () => {
+  const appContext = useContext(AppContext);
+  console.log(appContext);
   return (
     <div
       className="hero min-h-screen"

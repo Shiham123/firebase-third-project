@@ -6,6 +6,7 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { NavLink } from 'react-router-dom';
 
 const NavList = () => {
   return (
@@ -16,12 +17,14 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? 'pending' : isActive ? 'text-green-500' : ''
+          }
         >
-          Pages
-        </a>
+          Home
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -29,12 +32,14 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <NavLink
+          to="/contact"
+          className={({ isActive, isPending }) =>
+            isPending ? 'pending' : isActive ? 'text-green-500' : ''
+          }
         >
-          Account
-        </a>
+          Contact
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -42,12 +47,14 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+            isPending ? 'pending' : isActive ? 'text-green-500' : ''
+          }
         >
-          Blocks
-        </a>
+          Login
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -55,12 +62,14 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <NavLink
+          to="/register"
+          className={({ isActive, isPending }) =>
+            isPending ? 'pending' : isActive ? 'text-green-500' : ''
+          }
         >
-          Docs
-        </a>
+          Register
+        </NavLink>
       </Typography>
     </ul>
   );

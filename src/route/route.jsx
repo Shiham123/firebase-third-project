@@ -3,6 +3,8 @@ import MainLayout from '../Layout/mainLayout';
 import Home from '../pages/home';
 import ErrorPage from '../pages/error';
 import Contact from '../pages/contact';
+import LoginPage from '../pages/login';
+import RegisterPage from '../pages/register';
 
 const appRouter = createBrowserRouter([
   {
@@ -12,6 +14,8 @@ const appRouter = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/contact', element: <Contact /> },
+      { path: '/login', element: <LoginPage /> },
+      { path: '/register', element: <RegisterPage /> },
     ],
   },
 ]);

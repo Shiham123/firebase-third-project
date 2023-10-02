@@ -11,9 +11,12 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../context/useContext';
 
+import { FcGoogle } from 'react-icons/fc';
+import { DiGithubFull } from 'react-icons/di';
+
 const LoginPage = () => {
   const context = useContext(AppContext);
-  const { signWithEmailPassword } = context;
+  const { signWithEmailPassword, googleSignIn, githubSignIn } = context;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,6 +24,18 @@ const LoginPage = () => {
     const passwordValue = event.target.password.value;
 
     signWithEmailPassword(emailValue, passwordValue)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   };
@@ -45,6 +60,12 @@ const LoginPage = () => {
           <CardFooter className="pt-0">
             <Button variant="gradient" fullWidth type="submit">
               Login
+            </Button>
+            <Button onClick={handleGoogleSignIn}>
+              <FcGoogle />
+            </Button>
+            <Button onClick={handleGithubSignIn}>
+              <DiGithubFull />
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
               not have an account?

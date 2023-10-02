@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Navbar,
   Collapse,
   Typography,
   IconButton,
+  Button,
 } from '@material-tailwind/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { AppContext } from '../context/useContext';
 
 const NavList = () => {
+  const context = useContext(AppContext);
+  const { logOut, user } = context;
+
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -71,6 +82,30 @@ const NavList = () => {
           Register
         </NavLink>
       </Typography>
+      {user && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
+        >
+          <NavLink
+            to="/item"
+            className={({ isActive, isPending }) =>
+              isPending ? 'pending' : isActive ? 'text-green-500' : ''
+            }
+          >
+            items
+          </NavLink>
+        </Typography>
+      )}
+      {user ? (
+        <Button onClick={handleSignOut}>Sign out</Button>
+      ) : (
+        <Link to="/register">
+          <Button>Sign in</Button>
+        </Link>
+      )}
     </ul>
   );
 };

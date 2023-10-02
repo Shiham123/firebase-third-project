@@ -5,6 +5,8 @@ import ErrorPage from '../pages/error';
 import Contact from '../pages/contact';
 import LoginPage from '../pages/login';
 import RegisterPage from '../pages/register';
+import ItemsPage from '../pages/items';
+import PrivateRoute from './privateRoute';
 
 const appRouter = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const appRouter = createBrowserRouter([
       { path: '/contact', element: <Contact /> },
       { path: '/login', element: <LoginPage /> },
       { path: '/register', element: <RegisterPage /> },
+      {
+        path: '/item',
+        element: (
+          <PrivateRoute>
+            <ItemsPage />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
